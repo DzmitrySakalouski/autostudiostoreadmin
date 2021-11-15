@@ -1,17 +1,18 @@
 import { yellow } from '@mui/material/colors';
 import axios from 'axios';
-import {takeEvery, put} from 'redux-saga/effects';
+import { takeEvery, put } from 'redux-saga/effects';
 import { AUTHENTICATION } from '../../../constants';
-import { AUTH, authenticationSuccess } from '../../actions';
+import { AUTH, authenticationFailure, authenticationSuccess } from '../../actions';
 
 function* authenticate(action) {
-    yield console.log(action);
     try {
-        const {email, password} = action.payload;
-        const result = yield axios.post(AUTHENTICATION.SIGNIN(), {email, password});
-        yield put(authenticationSuccess(result));
+        const { email, password } = action.payload;
+        const result = yield axios.post(AUTHENTICATION.SIGNIN(), { email, password });
+
+        yield put(authenticationSuccess(result.data));
     } catch (error) {
-        yield console.log("error =>", error)
+        const { message } = error;
+        yield put(authenticationFailure(message))
     }
 }
 

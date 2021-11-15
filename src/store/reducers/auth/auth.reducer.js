@@ -1,7 +1,7 @@
 import { AUTH } from "../../actions/auth/auth.types";
 
 const initialState = {
-    userData: null,
+    userAuthData: null,
     errorMessage: null,
     isLoading: false,
 };
@@ -11,21 +11,21 @@ export const authReducer = (state = initialState, action) => {
         case AUTH.AUTHENTICATION_START: 
             return {
                 ...state,
-                userData: null,
+                userAuthData: null,
                 isLoading: true,
                 errorMessage: null,
             }
         case AUTH.AUTHENTICATION_SUCCESS:
             return {
                 ...state,
-                userData: action.payload,
+                userAuthData: action.payload,
                 isLoading: false,
                 errorMessage: null,
             }
         case AUTH.AUTHENTICATION_ERROR:
             return {
                 ...state,
-                userData: null,
+                userAuthData: null,
                 isLoading: false,
                 errorMessage: action.payload,
             }

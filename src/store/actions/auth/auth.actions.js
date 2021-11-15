@@ -5,9 +5,9 @@ export const startAuthentication = ({ email, password }) => ({
     payload: { email, password },
 });
 
-export const authenticationFailure = payload => ({
+export const authenticationFailure = errorMessage => ({
     type: AUTH.AUTHENTICATION_ERROR,
-    payload,
+    payload: errorMessage,
 });
 
 export const authenticationSuccess = payload => ({
