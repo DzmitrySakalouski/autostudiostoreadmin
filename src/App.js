@@ -1,9 +1,14 @@
 import { MainNavigator } from "./navigation/main";
 import './index.scss'
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 function App() {
   return (
-    <MainNavigator />
+    <Provider store={store}>
+      <MainNavigator />
+    </Provider>
+
   );
 }
 

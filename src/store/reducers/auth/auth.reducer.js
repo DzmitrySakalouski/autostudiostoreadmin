@@ -18,7 +18,7 @@ export const authReducer = (state = initialState, action) => {
         case AUTH.AUTHENTICATION_SUCCESS:
             return {
                 ...state,
-                userData: payload,
+                userData: action.payload,
                 isLoading: false,
                 errorMessage: null,
             }

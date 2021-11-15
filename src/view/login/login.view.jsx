@@ -4,6 +4,8 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useForm, Controller } from 'react-hook-form';
 import { EMAIL_REGEX } from '../../constants';
 import { useCallback, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { startAuthentication } from '../../store/actions';
 
 const useStyles = makeStyles({
     container: {
@@ -30,9 +32,13 @@ const useStyles = makeStyles({
 
 export const LoginView = () => {
     const classes = useStyles();
-    const { control, handleSubmit, formState: {errors} } = useForm();    
+    const { control, handleSubmit, formState: {errors} } = useForm();
+    const dispatch = useDispatch();
 
-    const onSubmit = useCallback((data) => console.log(data), []);
+    const onSubmit = useCallback((data) => {
+        const {email, password} = data;
+        dispatch(startAuthentication({email, password}));
+    }, []);
 
     return (
         <div className={classes.container}>
@@ -58,7 +64,7 @@ export const LoginView = () => {
                             onChange={onChange}
                             onBlur={onBlur}
                             value={value}
-                            error={errors?.email}
+                            error={!!errors?.email}
                             helperText={errors?.email?.message} />
                     }
                     }
@@ -80,7 +86,7 @@ export const LoginView = () => {
                             value={value}
                             type="password"
                             onBlur={onBlur}
-                            error={errors?.password?.message}
+                            error={!!errors?.password}
                             helperText={errors?.password?.message} />
                     }
                 />
