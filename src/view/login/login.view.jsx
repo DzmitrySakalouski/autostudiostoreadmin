@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { useForm, Controller } from 'react-hook-form';
 import { EMAIL_REGEX } from '../../constants';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const useStyles = makeStyles({
     container: {
@@ -30,16 +30,9 @@ const useStyles = makeStyles({
 
 export const LoginView = () => {
     const classes = useStyles();
-    const { control, handleSubmit, formState: {errors} } = useForm();
+    const { control, handleSubmit, formState: {errors} } = useForm();    
 
-    useEffect(() => {
-        console.log(errors);
-
-    }, [errors])
-
-    
-
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = useCallback((data) => console.log(data), []);
 
     return (
         <div className={classes.container}>
