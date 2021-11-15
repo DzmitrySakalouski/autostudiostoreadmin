@@ -1,4 +1,5 @@
-import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { ProtectedRoute } from "../../components/protected-route/protected-route.component";
 import { LoginView, HomeDashboardView } from "../../view";
 
 export const MainNavigator = () => {
@@ -7,11 +8,10 @@ export const MainNavigator = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route exact path="/" render={() => {
-                    return isAuthenticated ? <Navigate to="/home" replace /> : <Navigate to="/login" replace />
-                }} />
-                <Route path="/login" element={LoginView} />
-                <Route path="/home" element={HomeDashboardView} />
+                <Route exact path="/" element={<ProtectedRoute />}>
+                    <Route exact path="/" element={<HomeDashboardView />} />
+                </Route>
+                <Route path="/login" element={<LoginView />} />
             </Routes>
         </BrowserRouter>
     );
