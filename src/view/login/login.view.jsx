@@ -42,13 +42,13 @@ export const LoginView = () => {
     const onSubmit = useCallback((data) => {
         const {email, password} = data;
         dispatch(startAuthentication({email, password}));
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if (userAuthData) {
             navigate('/dashboard');
         }
-    }, [userAuthData]);
+    }, [userAuthData, navigate]);
 
     return (
         <div className={classes.container}>

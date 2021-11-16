@@ -27,7 +27,7 @@ export const ErrorToast = () => {
         }
 
         handleClose(false);
-    }, []);
+    }, [handleClose]);
 
     const shoulShowToast = useMemo(() => !!(errors.length && errors[errors.length - 1]), [errors]);
 

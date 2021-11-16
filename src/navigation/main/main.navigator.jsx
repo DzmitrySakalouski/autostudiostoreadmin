@@ -13,7 +13,7 @@ export const MainNavigator = () => {
             const tokenData = JSON.parse(tokenDataString);
             dispatch(authenticationSuccess(tokenData));
         }
-    }, []);
+    }, [dispatch]);
     return (
         <BrowserRouter>
             <Routes>
