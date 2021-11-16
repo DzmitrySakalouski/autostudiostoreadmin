@@ -7,7 +7,9 @@ import { useEffect } from "react";
 import { ErrorToast, InteractionWrapper } from "./components";
 
 function App() {
-  useEffect(() => configureAxios(), []);
+  useEffect(() => { 
+    configureAxios();
+  }, []);
 
   return (
     <Provider store={store}>

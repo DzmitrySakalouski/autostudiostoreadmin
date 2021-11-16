@@ -8,7 +8,8 @@ function* authenticate(action) {
     try {
         const { email, password } = action.payload;
         const result = yield axios.post(AUTHENTICATION.SIGNIN(), { email, password });
-
+        console.log(result);
+        localStorage.setItem('auth', JSON.stringify(result.token));
         yield put(authenticationSuccess(result));
     } catch (error) {
         const { message } = error;
