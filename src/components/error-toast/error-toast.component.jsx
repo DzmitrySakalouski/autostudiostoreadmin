@@ -6,8 +6,6 @@ export const ErrorToast = () => {
     const state = useSelector(state => state);
     const [errors, setErrors] = useState([]);
 
-    console.log(errors);
-
     useEffect(() => {
         const errorsList = [];
 

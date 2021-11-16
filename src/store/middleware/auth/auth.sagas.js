@@ -9,7 +9,7 @@ function* authenticate(action) {
         const { email, password } = action.payload;
         const result = yield axios.post(AUTHENTICATION.SIGNIN(), { email, password });
 
-        yield put(authenticationSuccess(result.data));
+        yield put(authenticationSuccess(result));
     } catch (error) {
         const { message } = error;
         yield put(authenticationFailure(message))

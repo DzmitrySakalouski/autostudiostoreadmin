@@ -6,6 +6,8 @@ import { EMAIL_REGEX } from '../../constants';
 import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { startAuthentication } from '../../store/actions';
+import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
     container: {
@@ -34,11 +36,19 @@ export const LoginView = () => {
     const classes = useStyles();
     const { control, handleSubmit, formState: {errors} } = useForm();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {userAuthData} = useSelector(state => state.auth);
 
     const onSubmit = useCallback((data) => {
         const {email, password} = data;
         dispatch(startAuthentication({email, password}));
     }, []);
+
+    useEffect(() => {
+        if (userAuthData) {
+            navigate('/dashboard');
+        }
+    }, [userAuthData]);
 
     return (
         <div className={classes.container}>
