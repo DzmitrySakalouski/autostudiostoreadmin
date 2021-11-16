@@ -2,7 +2,7 @@ import { Snackbar, Alert } from "@mui/material";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
-export const ErrorToast = ({ errorMessage }) => {
+export const ErrorToast = () => {
     const state = useSelector(state => state);
     const [errors, setErrors] = useState([]);
 
@@ -23,12 +23,23 @@ export const ErrorToast = ({ errorMessage }) => {
         setErrors([]);
     }, []);
 
-    const shoulShowToast = useMemo(() => errors.length && errors[errors.length - 1], [errors]);
+    const handleSnackbarClose = useCallback((event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        handleClose(false);
+    }, []);
+
+    const shoulShowToast = useMemo(() => !!(errors.length && errors[errors.length - 1]), [errors]);
 
     if (errors && errors.length) {
         return (
-            <Snackbar open={shoulShowToast} autoHideDuration={300}>
-                <Alert onClose={handleClose} severity="error">{errors[errors.length - 1]}</Alert>
+            <Snackbar onClose={handleSnackbarClose} open={shoulShowToast} autoHideDuration={3000}>
+                <div>
+                    {errors.map(errorMessage => <Alert severity="error">{errorMessage}</Alert>)}
+                </div>
+                 {/* <Alert onClose={handleClose} severity="error">{errors[errors.length - 1]}</Alert> */}
             </Snackbar>
         );
     }
