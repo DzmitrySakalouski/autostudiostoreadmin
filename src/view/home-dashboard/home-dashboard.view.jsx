@@ -6,6 +6,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { CreateItemDialog } from "./components/create-item-dialog.component";
+import { ProductGroupList } from "./components/product-groups-list.component";
 
 export const HomeDashboardView = () => {
     const [dialogType, setDialogType] = useState(null)
@@ -31,6 +32,7 @@ export const HomeDashboardView = () => {
 
     return (
         <div>
+            <ProductGroupList />
             <AddItemMenuComponent actions={menuActions} />
             <CreateItemDialog
                 type={dialogType}

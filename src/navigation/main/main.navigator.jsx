@@ -11,7 +11,7 @@ export const MainNavigator = () => {
         const tokenDataString = localStorage.getItem('auth');
         if (tokenDataString) {
             const tokenData = JSON.parse(tokenDataString);
-            dispatch(authenticationSuccess(tokenData));
+            dispatch(authenticationSuccess({token: tokenData}));
         }
     }, [dispatch]);
     return (

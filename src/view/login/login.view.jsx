@@ -37,7 +37,7 @@ export const LoginView = () => {
     const { control, handleSubmit, formState: {errors} } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {userAuthData} = useSelector(state => state.auth);
+    const {auth} = useSelector(state => state);
 
     const onSubmit = useCallback((data) => {
         const {email, password} = data;
@@ -45,10 +45,11 @@ export const LoginView = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (userAuthData?.token) {
+        console.log(auth.userAuthData);
+        if (auth.userAuthData?.token) {
             navigate('/dashboard');
         }
-    }, [userAuthData, navigate]);
+    }, [auth, navigate]);
 
     return (
         <div className={classes.container}>
