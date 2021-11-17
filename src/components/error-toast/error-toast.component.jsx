@@ -35,9 +35,8 @@ export const ErrorToast = () => {
         return (
             <Snackbar onClose={handleSnackbarClose} open={shoulShowToast} autoHideDuration={3000}>
                 <div>
-                    {errors.map(errorMessage => <Alert severity="error">{errorMessage}</Alert>)}
+                    {errors.map((errorMessage, index) => <Alert key={errorMessage + index} severity="error">{errorMessage}</Alert>)}
                 </div>
-                 {/* <Alert onClose={handleClose} severity="error">{errors[errors.length - 1]}</Alert> */}
             </Snackbar>
         );
     }
