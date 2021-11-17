@@ -10,6 +10,6 @@ export const getProductGroupsSuccess = (groups) => ({
 });
 
 export const getProductGroupsError = (errorMessage) => ({
-    type: PRODUCT_GROUPS_ACTIONS.GET_GROUPS_SUCCESS,
+    type: PRODUCT_GROUPS_ACTIONS.GET_GROUPS_ERROR,
     payload: errorMessage,
 });

@@ -8,3 +8,7 @@ export const AUTHENTICATION = {
 export const USER = {
     DATA: () => `${BASE_URL}/users/me`,
 }
+
+export const PRODUCTS = {
+    PRODUCT_GROUPS: () => `${BASE_URL}/product-group`,
+}

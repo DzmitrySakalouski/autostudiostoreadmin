@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getUserDataStart } from "../../store/actions";
+import { getProductGroups, getUserDataStart } from "../../store/actions";
 import { AddItemMenuComponent } from "./components/create-item-menu.component";
 import CategoryIcon from '@mui/icons-material/Category';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -12,6 +12,7 @@ export const HomeDashboardView = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getUserDataStart());
+        dispatch(getProductGroups());
     }, []);
 
     const handleCloseCreateDialog = useCallback(() => setDialogType(null), []);

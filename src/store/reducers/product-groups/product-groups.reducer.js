@@ -22,7 +22,7 @@ export const productGroupReducer = (state = initialState, action) => {
                 groups: action.payload
             }
 
-        case PRODUCT_GROUPS_ACTIONS.GET_GROUPS_SUCCESS:
+        case PRODUCT_GROUPS_ACTIONS.GET_GROUPS_ERROR:
             return {
                 ...state,
                 isLoading: false,
