@@ -14,3 +14,16 @@ export const authenticationSuccess = payload => ({
     type: AUTH.AUTHENTICATION_SUCCESS,
     payload
 });
+
+export const logoutStart = () => ({
+    type: AUTH.LOG_OUT_START,
+});
+
+export const logoutError = (errorMessage) => ({
+    type: AUTH.LOG_OUT_ERROR,
+    payload: errorMessage,
+});
+
+export const logoutSuccess = () => ({
+    type: AUTH.LOG_OUT_SUCCESS,
+});

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
 import { USER } from '../../../constants/endpoints';
-import { getUserDataError, getUserDataSuccess, UserActionTypes } from '../../actions';
+import { getUserDataError, getUserDataSuccess, logoutStart, UserActionTypes } from '../../actions';
 
 function* getUserData() {
     try {
@@ -9,6 +9,7 @@ function* getUserData() {
         yield put(getUserDataSuccess(user));
     } catch (error) {
         yield put(getUserDataError(error.message));
+        yield put(logoutStart());
     }
 
 }

@@ -1,12 +1,17 @@
 import axios from "axios"
 import { store } from "../store";
+import { logoutStart } from "../store/actions";
 
 export const configureAxios = () => {
     axios.interceptors.response.use(function(response) {
         return response?.data;
     },
     function(error) {
-        return Promise.reject(error?.response?.data);
+        const {data} = error?.response;
+        if (data?.errorCode === 401) {
+            store.dispatch(logoutStart());
+        }
+        return Promise.reject(data);
     });
 
     axios.interceptors.request.use(function(request) {

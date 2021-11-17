@@ -8,7 +8,7 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case AUTH.AUTHENTICATION_START: 
+        case AUTH.AUTHENTICATION_START:
             return {
                 ...state,
                 userAuthData: null,
@@ -22,6 +22,7 @@ export const authReducer = (state = initialState, action) => {
                 isLoading: false,
                 errorMessage: null,
             }
+
         case AUTH.AUTHENTICATION_ERROR:
             return {
                 ...state,
@@ -29,7 +30,29 @@ export const authReducer = (state = initialState, action) => {
                 isLoading: false,
                 errorMessage: action.payload,
             }
-    
+
+        case AUTH.LOG_OUT_START:
+            return {
+                ...state,
+                isLoading: true,
+                errorMessage: null,
+            }
+
+        case AUTH.LOG_OUT_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: action.payload,
+            }
+
+        case AUTH.LOG_OUT_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: null,
+                userAuthData: null,
+            }
+
         default:
             return state;
     }

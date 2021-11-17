@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, put, call } from 'redux-saga/effects';
 import { AUTHENTICATION } from '../../../constants';
-import { AUTH, authenticationFailure, authenticationSuccess } from '../../actions';
+import { AUTH, authenticationFailure, authenticationSuccess, logoutError, logoutSuccess } from '../../actions';
 
-function* authenticate(action) {
+function* authenticateAsync(action) {
     try {
         const { email, password } = action.payload;
         const result = yield axios.post(AUTHENTICATION.SIGNIN(), { email, password });
-        console.log(result);
-        localStorage.setItem('auth', JSON.stringify(result.token));
+        yield call(localStorage.setItem('auth', JSON.stringify(result.token)));
         yield put(authenticationSuccess(result));
     } catch (error) {
         const { message } = error;
@@ -17,5 +16,20 @@ function* authenticate(action) {
 }
 
 export function* authenticationStart() {
-    yield takeEvery(AUTH.AUTHENTICATION_START, authenticate);
+    yield takeEvery(AUTH.AUTHENTICATION_START, authenticateAsync);
+}
+
+export function* logoutAsync() {
+    try {
+        yield axios.get(AUTHENTICATION.LOG_OUT());
+        yield put(logoutSuccess());
+    } catch (error) {
+        console.log("LOGOUT ERROR", error);
+        yield put(logoutError(error.message));
+    }
+    yield axios.get(AUTHENTICATION.LOG_OUT());
+}
+
+export function* logoutStart() {
+    yield takeEvery(AUTH.LOG_OUT_START, logoutAsync)
 }
