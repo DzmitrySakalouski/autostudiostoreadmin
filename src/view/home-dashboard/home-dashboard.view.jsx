@@ -1,9 +1,12 @@
-import axios from "axios";
 import { useEffect } from "react";
-import { USER } from "../../constants";
+import { useDispatch } from "react-redux";
+import { getUserDataStart } from "../../store/actions";
 
 export const HomeDashboardView = () => {
-    // useEffect(() => axios.get(USER.DATA()), []);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getUserDataStart());
+    }, []);
     return (
         <div>Dashboard here</div>
     );

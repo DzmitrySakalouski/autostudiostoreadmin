@@ -45,7 +45,7 @@ export const LoginView = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        if (userAuthData) {
+        if (userAuthData?.token) {
             navigate('/dashboard');
         }
     }, [userAuthData, navigate]);

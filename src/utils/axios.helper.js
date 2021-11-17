@@ -21,8 +21,9 @@ export const configureAxios = () => {
         });
 
     axios.interceptors.request.use(function (request) {
-        const { auth } = store.getState().auth; // ?.userAuthData;
+        const auth = store.getState().auth; // ?.userAuthData;
         request.headers['Content-Type'] = 'application/json';
+        console.log("REQUESR AUTH ", auth);
         if (auth?.userAuthData?.token) {
             const { token } = auth.userAuthData;
             request.headers["Authorization"] = "Bearer " + token.accessToken;

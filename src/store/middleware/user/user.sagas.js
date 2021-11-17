@@ -9,7 +9,6 @@ function* getUserData() {
         yield put(getUserDataSuccess(user));
     } catch (error) {
         yield put(getUserDataError(error.message));
-        yield put(logoutStart());
     }
 
 }
