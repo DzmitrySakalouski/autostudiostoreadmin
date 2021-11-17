@@ -7,8 +7,11 @@ function* authenticateAsync(action) {
     try {
         const { email, password } = action.payload;
         const result = yield axios.post(AUTHENTICATION.SIGNIN(), { email, password });
-        yield call(localStorage.setItem('auth', JSON.stringify(result.token)));
-        yield put(authenticationSuccess(result));
+        if (result?.token) {
+            yield call(() => localStorage.setItem('auth', JSON.stringify(result.token)));
+            yield put(authenticationSuccess(result));
+        }
+
     } catch (error) {
         const { message } = error;
         yield put(authenticationFailure(message))
@@ -23,8 +26,8 @@ export function* logoutAsync() {
     try {
         yield axios.get(AUTHENTICATION.LOG_OUT());
         yield put(logoutSuccess());
+        yield call(() => localStorage.removeItem("auth"));
     } catch (error) {
-        console.log("LOGOUT ERROR", error);
         yield put(logoutError(error.message));
     }
     yield axios.get(AUTHENTICATION.LOG_OUT());
