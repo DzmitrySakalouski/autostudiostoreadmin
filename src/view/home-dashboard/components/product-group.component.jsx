@@ -7,12 +7,12 @@ import Typography from '@mui/material/Typography';
 import { Avatar, CardHeader, IconButton } from '@mui/material';
 import { DeleteForeverOutlined } from '@mui/icons-material';
 
-export const ProductGroupItem = ({ name, description, image, groupId }) => {
+export const ProductGroupItem = ({ name, description, image, onDelete }) => {
     return (
         <Card sx={{ width: 325 }} style={{}}>
             <CardHeader
                 action={
-                    <IconButton aria-label="settings">
+                    <IconButton onClick={onDelete} aria-label="settings">
                         <DeleteForeverOutlined />
                     </IconButton>
                 }

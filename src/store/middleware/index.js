@@ -1,6 +1,6 @@
 import { all } from '@redux-saga/core/effects';
 import { logoutStart, authenticationStart } from './auth';
-import { createProductGroup, getProductGroups } from './product-groups';
+import { createProductGroup, deleteProductGroup, getProductGroups } from './product-groups';
 import { getUserDataStart } from './user'
 
 export function* rootSaga() {
@@ -10,5 +10,6 @@ export function* rootSaga() {
         getUserDataStart(),
         getProductGroups(),
         createProductGroup(),
+        deleteProductGroup(),
     ])
 }

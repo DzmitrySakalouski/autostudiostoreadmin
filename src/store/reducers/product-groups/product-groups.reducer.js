@@ -47,6 +47,26 @@ export const productGroupReducer = (state = initialState, action) => {
                 isLoading: false,
                 errorMessage: null,
             }
+
+        case PRODUCT_GROUPS_ACTIONS.DELETE_GROUP_START:
+            return {
+                ...state,
+                isLoading: true,
+                errorMessage: null,
+            }
+        case PRODUCT_GROUPS_ACTIONS.DELETE_GROUP_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: null,
+            }
+        case PRODUCT_GROUPS_ACTIONS.DELETE_GROUP_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: action.payload
+            }
+
         default:
             return state;
     }

@@ -27,4 +27,17 @@ export const createGroupSuccess = (group) => ({
 export const createGroupError = (errorMessage) => ({
     type: PRODUCT_GROUPS_ACTIONS.CREATE_GROUP_ERROR,
     payload: errorMessage,
-})
+});
+
+export const deleteProductGroupStart = (id) => ({
+    type: PRODUCT_GROUPS_ACTIONS.DELETE_GROUP_START,
+    payload: id,
+});
+
+export const deleteProductGroupSuccess = () => ({
+    type: PRODUCT_GROUPS_ACTIONS.DELETE_GROUP_SUCCESS,
+});
+
+export const deleteProductGroupError = () => ({
+    type: PRODUCT_GROUPS_ACTIONS.DELETE_GROUP_ERROR,
+});

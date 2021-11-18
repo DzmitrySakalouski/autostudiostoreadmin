@@ -11,4 +11,5 @@ export const USER = {
 
 export const PRODUCTS = {
     PRODUCT_GROUPS: () => `${BASE_URL}/product-group`,
+    DELETE_PRODUCT_GROUP: (id) => `${BASE_URL}/product-group/${id}`,
 }
