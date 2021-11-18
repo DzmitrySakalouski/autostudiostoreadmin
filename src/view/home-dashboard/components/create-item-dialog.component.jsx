@@ -98,120 +98,120 @@ const ProductGroupDialog = ({ onClose }) => {
   )
 }
 
-const ProductDialog = ({ onClose }) => {
-  const { control, handleSubmit, formState: { errors } } = useForm();
-  const classes = useDialogStryles();
-  const { groups } = useSelector(state => state.productGroups)
+// const ProductDialog = ({ onClose }) => {
+//   const { control, handleSubmit, formState: { errors } } = useForm();
+//   const classes = useDialogStryles();
+//   const { groups } = useSelector(state => state.productGroups)
 
-  return (
-    <>
-      <DialogContent>
-        <div className={classes.container}>
-          <Controller
-            name="name"
-            control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "Pleasee add name"
-              }
-            }}
-            defaultValue=""
-            render={({ field: { value, onChange, onBlur } }) =>
-              <TextField
-                label="Название"
-                sx={{ marginBottom: 1.5, marginTop: 1 }}
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur} />}
-          />
-          <Controller
-            name="description"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: "Pleasee add description"
-              }
-            }}
-            defaultValue=""
-            render={({ field: { value, onChange, onBlur } }) =>
-              <TextField
-                label="Описание"
-                sx={{ marginBottom: 1.5 }}
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur} />}
-          />
-          <Controller
-            name="imageUrl"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: "Pleasee add description"
-              }
-            }}
-            defaultValue=""
-            render={({ field: { value, onChange, onBlur } }) =>
-              <TextField
-                label="Ссылка на картинку"
-                value={value}
-                sx={{ marginBottom: 1.5 }}
-                onChange={onChange}
-                onBlur={onBlur} />}
-          />
-          <Controller
-            name="price"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: "Pleasee add description"
-              }
-            }}
-            defaultValue=""
-            render={({ field: { value, onChange, onBlur } }) =>
-              <TextField
-                label="Цена"
-                value={value}
-                sx={{ marginBottom: 1.5 }}
-                onChange={onChange}
-                onBlur={onBlur} />}
-          />
-          <Controller
-            name="groupId"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: "Pleasee add description"
-              }
-            }}
-            render={({ field: { value, onChange, onBlur } }) =>
-              <FormControl fullWidth>
-                <InputLabel id="group-dialog-select-label">Группа</InputLabel>
-                <Select labelId="group-dialog-select-label" value={value} onChange={onChange} onBlur={onBlur} label="Группа">
-                  {
-                    groups.map(group => <MenuItem key={group.id} value={group.id}>{group.name}</MenuItem>)
-                  }
-                </Select>
-              </FormControl>}
+//   return (
+//     <>
+//       <DialogContent>
+//         <div className={classes.container}>
+//           <Controller
+//             name="name"
+//             control={control}
+//             rules={{
+//               required: {
+//                 value: true,
+//                 message: "Pleasee add name"
+//               }
+//             }}
+//             defaultValue=""
+//             render={({ field: { value, onChange, onBlur } }) =>
+//               <TextField
+//                 label="Название"
+//                 sx={{ marginBottom: 1.5, marginTop: 1 }}
+//                 value={value}
+//                 onChange={onChange}
+//                 onBlur={onBlur} />}
+//           />
+//           <Controller
+//             name="description"
+//             control={control}
+//             defaultValue=""
+//             rules={{
+//               required: {
+//                 value: true,
+//                 message: "Pleasee add description"
+//               }
+//             }}
+//             defaultValue=""
+//             render={({ field: { value, onChange, onBlur } }) =>
+//               <TextField
+//                 label="Описание"
+//                 sx={{ marginBottom: 1.5 }}
+//                 value={value}
+//                 onChange={onChange}
+//                 onBlur={onBlur} />}
+//           />
+//           <Controller
+//             name="imageUrl"
+//             control={control}
+//             defaultValue=""
+//             rules={{
+//               required: {
+//                 value: true,
+//                 message: "Pleasee add description"
+//               }
+//             }}
+//             defaultValue=""
+//             render={({ field: { value, onChange, onBlur } }) =>
+//               <TextField
+//                 label="Ссылка на картинку"
+//                 value={value}
+//                 sx={{ marginBottom: 1.5 }}
+//                 onChange={onChange}
+//                 onBlur={onBlur} />}
+//           />
+//           <Controller
+//             name="price"
+//             control={control}
+//             defaultValue=""
+//             rules={{
+//               required: {
+//                 value: true,
+//                 message: "Pleasee add description"
+//               }
+//             }}
+//             defaultValue=""
+//             render={({ field: { value, onChange, onBlur } }) =>
+//               <TextField
+//                 label="Цена"
+//                 value={value}
+//                 sx={{ marginBottom: 1.5 }}
+//                 onChange={onChange}
+//                 onBlur={onBlur} />}
+//           />
+//           <Controller
+//             name="groupId"
+//             control={control}
+//             defaultValue=""
+//             rules={{
+//               required: {
+//                 value: true,
+//                 message: "Pleasee add description"
+//               }
+//             }}
+//             render={({ field: { value, onChange, onBlur } }) =>
+//               <FormControl fullWidth>
+//                 <InputLabel id="group-dialog-select-label">Группа</InputLabel>
+//                 <Select labelId="group-dialog-select-label" value={value} onChange={onChange} onBlur={onBlur} label="Группа">
+//                   {
+//                     groups.map(group => <MenuItem key={group.id} value={group.id}>{group.name}</MenuItem>)
+//                   }
+//                 </Select>
+//               </FormControl>}
 
-          />
-        </div>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={onClose}>Отмена</Button>
-        <Button variant="contained" onClick={onClose}>Созранить</Button>
-      </DialogActions>
-    </>
-  )
-}
+//           />
+//         </div>
+//       </DialogContent>
+//       <DialogActions>
+//         <Button onClick={onClose}>Отмена</Button>
+//         <Button variant="contained" onClick={onClose}>Созранить</Button>
+//       </DialogActions>
+//     </>
+//   )
+// }
 
 const AdminDialog = ({ onClose }) => {
   const { control, handleSubmit, formState: { errors } } = useForm();
@@ -281,7 +281,6 @@ export const CreateItemDialog = ({ onClose, type }) => {
 
   const dialogs = {
     group: { component: () => <ProductGroupDialog onClose={onClose} />, headerTitle: "Создать группу" },
-    product: { component: () => <ProductDialog onClose={onClose} />, headerTitle: "Создать продукт" },
     admin: { component: () => <AdminDialog onClose={onClose} />, headerTitle: "Создать нового админа" }
   }
 

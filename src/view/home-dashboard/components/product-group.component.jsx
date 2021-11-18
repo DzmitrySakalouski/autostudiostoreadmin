@@ -4,10 +4,20 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Avatar, CardHeader, IconButton } from '@mui/material';
+import { DeleteForeverOutlined } from '@mui/icons-material';
 
-export const ProductGroupItem = ({ name, description, image }) => {
+export const ProductGroupItem = ({ name, description, image, groupId }) => {
     return (
         <Card sx={{ width: 325 }} style={{}}>
+            <CardHeader
+                action={
+                    <IconButton aria-label="settings">
+                        <DeleteForeverOutlined />
+                    </IconButton>
+                }
+                title={name}
+            />
             <CardMedia
                 component="img"
                 height="180"
@@ -15,9 +25,6 @@ export const ProductGroupItem = ({ name, description, image }) => {
                 alt="green iguana"
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {name}
-                </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {description}
                 </Typography>
