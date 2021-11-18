@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "../../components/protected-route/protected-route.component";
 import { authenticationSuccess } from "../../store/actions";
-import { LoginView, HomeDashboardView } from "../../view";
+import { LoginView, HomeDashboardView, GroupPageView } from "../../view";
 
 export const MainNavigator = () => {
     const dispatch = useDispatch();
@@ -19,6 +19,7 @@ export const MainNavigator = () => {
             <Routes>
                 <Route exact path="/" element={<ProtectedRoute />}>
                     <Route exact path="/dashboard" element={<HomeDashboardView />} />
+                    <Route exact path="/group/:groupId" element={<GroupPageView />} />
                 </Route>
                 <Route path="/login" element={<LoginView />} />
             </Routes>

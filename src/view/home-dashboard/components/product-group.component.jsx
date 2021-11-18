@@ -6,8 +6,12 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Avatar, CardHeader, IconButton } from '@mui/material';
 import { DeleteForeverOutlined } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 
-export const ProductGroupItem = ({ name, description, image, onDelete }) => {
+export const ProductGroupItem = ({ name, description, image, onDelete, groupId }) => {
+    const navigate = useNavigate();
+    const handleNavigateToDetails = useCallback(() => navigate(`/group/${groupId}`), []);
     return (
         <Card sx={{ width: 325 }} style={{}}>
             <CardHeader
@@ -30,8 +34,7 @@ export const ProductGroupItem = ({ name, description, image, onDelete }) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Редактировать</Button>
-                <Button size="small">Подробнее</Button>
+                <Button onClick={handleNavigateToDetails} variant="outlined" size="small">Подробнее</Button>
             </CardActions>
         </Card>
     );
