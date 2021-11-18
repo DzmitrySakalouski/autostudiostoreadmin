@@ -24,8 +24,8 @@ export const ProductGroupList = () => {
         <Box sx={{ flexGrow: 1 }}>
             <Grid container rowSpacing={3} columnSpacing={{ xs: 1, sm: 2, md: 3 }} className={classes.conatainer}>
                 {groups.map(group => (
-                    <Grid item >
-                        <ProductGroupItem key={group.id} name={group.name} image={group.imageUrl} description={group.description} />
+                    <Grid item  key={group.id} >
+                        <ProductGroupItem name={group.name} image={group.imageUrl} description={group.description} />
                     </Grid>
                 ))}
             </Grid>

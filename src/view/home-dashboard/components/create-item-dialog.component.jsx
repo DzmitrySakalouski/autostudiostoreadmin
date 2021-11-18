@@ -8,7 +8,8 @@ import { makeStyles } from '@mui/styles';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useForm, Controller } from 'react-hook-form';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { createGroupStart } from '../../../store/actions';
 
 const useDialogStryles = makeStyles({
   container: {
@@ -20,6 +21,12 @@ const useDialogStryles = makeStyles({
 const ProductGroupDialog = ({ onClose }) => {
   const { control, handleSubmit, formState: { errors } } = useForm();
   const classes = useDialogStryles();
+  const dispatch = useDispatch();
+
+  const onSubmit = (data) => {
+    const {name, description, imageUrl} = data;
+    dispatch(createGroupStart({name, description, imageUrl}));
+  }
 
   return (
     <>
@@ -85,7 +92,7 @@ const ProductGroupDialog = ({ onClose }) => {
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose}>Отмена</Button>
-        <Button variant="contained" onClick={onClose}>Созранить</Button>
+        <Button variant="contained" onClick={handleSubmit(onSubmit)}>Созранить</Button>
       </DialogActions>
     </>
   )
@@ -209,6 +216,11 @@ const ProductDialog = ({ onClose }) => {
 const AdminDialog = ({ onClose }) => {
   const { control, handleSubmit, formState: { errors } } = useForm();
   const classes = useDialogStryles();
+  const dispatch = useDispatch();
+
+  // const onSubmit = data => {
+  //   d
+  // }
 
   return (
     <>

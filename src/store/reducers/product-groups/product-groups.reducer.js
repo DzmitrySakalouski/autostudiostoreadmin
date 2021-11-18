@@ -29,6 +29,24 @@ export const productGroupReducer = (state = initialState, action) => {
                 errorMessage: action.payload,
             }
 
+        case PRODUCT_GROUPS_ACTIONS.CREATE_GROUP_START:
+            return {
+                ...state,
+                errorMessage: null,
+                isLoading: true
+            }
+        case PRODUCT_GROUPS_ACTIONS.CREATE_GROUP_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: action.payload
+            }
+        case PRODUCT_GROUPS_ACTIONS.CREATE_GROUP_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                errorMessage: null,
+            }
         default:
             return state;
     }

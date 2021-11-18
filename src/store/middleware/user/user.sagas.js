@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { takeEvery, put } from 'redux-saga/effects';
 import { USER } from '../../../constants/endpoints';
-import { getUserDataError, getUserDataSuccess, logoutStart, UserActionTypes } from '../../actions';
+import { getUserDataError, getUserDataSuccess, UserActionTypes } from '../../actions';
 
 function* getUserData() {
     try {

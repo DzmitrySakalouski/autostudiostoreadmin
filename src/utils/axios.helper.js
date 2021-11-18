@@ -7,8 +7,9 @@ export const configureAxios = () => {
         return response?.data;
     },
         function (error) {
-            console.log("error", {...error});
+            console.log("ERROR IN AXIOS", {...error});
             if (error?.response) {
+                console.log("ERROR IN AXIOS MESSAGE", {...error});
                 const { data } = error?.response;
                 if (data?.statusCode === 401) {
                     console.log("401");
